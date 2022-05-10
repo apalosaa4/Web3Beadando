@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('recipe_free_froms', function (Blueprint $table) {
+            $table->bigInteger('id');
             $table->bigInteger('recipe_id');
             $table->bigInteger('freefrom_id');
         });
