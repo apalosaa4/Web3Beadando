@@ -6,5 +6,5 @@
 
 
 <a href="https://github.com/apalosaa4/Web3Beadando/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=apalosaa4/ProgTech"/>
+  <img src="https://contrib.rocks/image?repo=apalosaa4/Web3Beadando"/>
 </a>
