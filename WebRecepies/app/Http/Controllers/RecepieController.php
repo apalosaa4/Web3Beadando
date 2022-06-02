@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recepie;
 use App\Http\Requests\StoreRecepieRequest;
 use App\Http\Requests\UpdateRecepieRequest;
+use App\Http\Resources\RecepieResource;
 
 class RecepieController extends Controller
 {
@@ -15,7 +16,8 @@ class RecepieController extends Controller
      */
     public function index()
     {
-        //
+        $recepies=Recepie::all();
+        return RecepieResource::collection($recepies);
     }
 
     /**
@@ -36,18 +38,28 @@ class RecepieController extends Controller
      */
     public function store(StoreRecepieRequest $request)
     {
-        //
+        $recepie = new Recepie();
+        /*$recepie->recepie_id = $request->input('recepie_id');
+        $recepie->user_id = $request->input('user_id');
+        $recepie->freefrom = $request->input('freefrom');
+        $recepie->recipe_name = $request->input('recipe_name');
+        $recepie->description = $request->input('description');
+        $recepie->created_at = $request->input('created_at');*/
+        if($recepie->save()){
+            return new RecepieResource($recepie);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Recepie  $recepie
+     * @param  int $recipe_id
      * @return \Illuminate\Http\Response
      */
-    public function show(Recepie $recepie)
+    public function show($recipe_id)
     {
-        //
+        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->first();
+        return new RecepieResource($recepie);
     }
 
     /**
