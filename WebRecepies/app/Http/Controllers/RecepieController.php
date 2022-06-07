@@ -39,12 +39,12 @@ class RecepieController extends Controller
     public function store(StoreRecepieRequest $request)
     {
         $recepie = new Recepie();
-        /*$recepie->recepie_id = $request->input('recepie_id');
+        $recepie->recipe_id = $request->input('recipe_id');
         $recepie->user_id = $request->input('user_id');
         $recepie->freefrom = $request->input('freefrom');
         $recepie->recipe_name = $request->input('recipe_name');
         $recepie->description = $request->input('description');
-        $recepie->created_at = $request->input('created_at');*/
+        $recepie->created_at = $request->input('created_at');
         if($recepie->save()){
             return new RecepieResource($recepie);
         }
@@ -58,7 +58,7 @@ class RecepieController extends Controller
      */
     public function show($recipe_id)
     {
-        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->first();
+        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail();
         return new RecepieResource($recepie);
     }
 
@@ -77,22 +77,33 @@ class RecepieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateRecepieRequest  $request
-     * @param  \App\Models\Recepie  $recepie
+     * @param  int $recipe_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRecepieRequest $request, Recepie $recepie)
+    public function update(UpdateRecepieRequest $request, $recipe_id)
     {
-        //
+        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail;
+        $recepie->user_id = $request->filled('user_id')? $request->input('user_id'): $recepie->user_id;
+        $recepie->freefrom = $request->filled('freefrom')? $request->input('freefrom'): $recepie->freefrom;
+        $recepie->recipe_name = $request->filled('recipe_name')? $request->input('recipe_name'): $recepie->recipe_name;
+        $recepie->description = $request->filled('description')? $request->input('description'): $recepie->description;
+        $recepie->created_at = $request->filled('created_at')? $request->input('created_at'): $recepie->created_at;
+        if($recepie->save()){
+            return new RecepieResource($recepie);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Recepie  $recepie
+     * @param  int $recipe_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recepie $recepie)
+    public function destroy($recipe_id)
     {
-        //
+        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->first();
+        if($recepie->delete()){
+            return new RecepieResource($recepie);
+        }
     }
 }

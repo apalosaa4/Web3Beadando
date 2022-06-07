@@ -9,6 +9,8 @@ class Recepie extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'recipe_id';
+
     public function user(){
         return $this->belongsTo("\App\Models\User", 'recipe_id', 'id');
     }
