@@ -9,6 +9,8 @@ class Ingredient extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'ingredient_id';
+
     public function recipeIngredient(){
         return $this->hasMany("\App\Models\RecipeIngredient", 'ingredient_id', 'recipe_id');
     }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('free_froms', function (Blueprint $table) {
             $table->bigInteger('freefrom_id');
             $table->string('freefrom_name');
+            $table->timestamps();
         });
     }
 

@@ -82,7 +82,7 @@ class RecepieController extends Controller
      */
     public function update(UpdateRecepieRequest $request, $recipe_id)
     {
-        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail;
+        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail();
         $recepie->user_id = $request->filled('user_id')? $request->input('user_id'): $recepie->user_id;
         $recepie->freefrom = $request->filled('freefrom')? $request->input('freefrom'): $recepie->freefrom;
         $recepie->recipe_name = $request->filled('recipe_name')? $request->input('recipe_name'): $recepie->recipe_name;

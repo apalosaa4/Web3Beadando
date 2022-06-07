@@ -15,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('recepie','App\Http\Controllers\RecepieController');
+Route::resource('freefrom','App\Http\Controllers\FreeFromController');
 
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});

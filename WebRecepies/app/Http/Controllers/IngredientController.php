@@ -15,7 +15,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        $recepies=Recepie::all();
+        return RecepieResource::collection($recepies);
     }
 
     /**

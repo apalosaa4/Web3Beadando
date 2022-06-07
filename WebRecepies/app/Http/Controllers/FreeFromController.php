@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FreeFrom;
 use App\Http\Requests\StoreFreeFromRequest;
 use App\Http\Requests\UpdateFreeFromRequest;
+use App\Http\Resources\FreeFromResource;
 
 class FreeFromController extends Controller
 {
@@ -15,7 +16,8 @@ class FreeFromController extends Controller
      */
     public function index()
     {
-        //
+        $freeFrom=FreeFrom::all();
+        return FreeFromResource::collection($freeFrom);
     }
 
     /**
@@ -36,18 +38,24 @@ class FreeFromController extends Controller
      */
     public function store(StoreFreeFromRequest $request)
     {
-        //
+        $freeFrom = new FreeFrom();
+        $freeFrom->freefrom_id = $request->input('freefrom_id');
+        $freeFrom->freefrom_name = $request->input('freefrom_name');
+        if($freeFrom->save()){
+            return new FreeFromResource($freeFrom);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FreeFrom  $freeFrom
+     * @param  int $freefrom_id
      * @return \Illuminate\Http\Response
      */
-    public function show(FreeFrom $freeFrom)
+    public function show($freefrom_id)
     {
-        //
+        $freeFrom=FreeFrom::all()->where('freefrom_id',$freefrom_id)->firstOrFail();
+        return new FreeFromResource($freeFrom);
     }
 
     /**
@@ -65,22 +73,29 @@ class FreeFromController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateFreeFromRequest  $request
-     * @param  \App\Models\FreeFrom  $freeFrom
+     * @param  int $freefrom_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFreeFromRequest $request, FreeFrom $freeFrom)
+    public function update(UpdateFreeFromRequest $request, $freefrom_id)
     {
-        //
+        $freeFrom=FreeFrom::all()->where('freefrom_id',$freefrom_id)->firstOrFail();
+        $freeFrom->freefrom_name = $request->filled('freefrom_name')? $request->input('freefrom_name'): $freeFrom->freefrom_name;
+        if($freeFrom->save()){
+            return new FreeFromResource($freeFrom);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FreeFrom  $freeFrom
+     * @param  int $freefrom_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FreeFrom $freeFrom)
+    public function destroy($freefrom_id)
     {
-        //
+        $freeFrom=FreeFrom::all()->where('freefrom_id',$freefrom_id)->firstOrFail();
+        if($freeFrom->delete()){
+            return new FreeFromResource($freeFrom);
+        }
     }
 }
