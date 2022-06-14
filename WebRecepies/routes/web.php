@@ -16,7 +16,7 @@ use App\Http\Controllers\RecepieController;
 */
 
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
-Route::get('/recepie/{id}', 'RecepieController@show')->name('recepie');
+Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
 
 Route::get('/', function () {
     return view('welcome');
