@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ingredient;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
+use App\Http\Resources\IngredientResource;
 
 class IngredientController extends Controller
 {
@@ -15,8 +16,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $recepies=Recepie::all();
-        return RecepieResource::collection($recepies);
+        $ingredients=Ingredient::all();
+        return IngredientResource::collection($ingredients);
     }
 
     /**
@@ -37,18 +38,24 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        //
+        $ingredients = new Ingredient();
+        $ingredients->ingredient_id = $request->input('ingredient_id');
+        $ingredients->ingredient_name = $request->input('ingredient_name');
+        if($ingredients->save()){
+            return new IngredientResource($ingredients);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ingredient  $ingredient
+     * @param  int $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingredient $ingredient)
+    public function show($ingredient_id)
     {
-        //
+        $ingredients=Ingredient::all()->where('ingredient_id',$ingredient_id)->firstOrFail();
+        return new IngredientResource($ingredients);
     }
 
     /**
@@ -66,22 +73,29 @@ class IngredientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateIngredientRequest  $request
-     * @param  \App\Models\Ingredient  $ingredient
+     * @param  int $ingredient_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
+    public function update(UpdateIngredientRequest $request, $ingredient_id)
     {
-        //
+        $ingredients=Ingredient::all()->where('ingredient_id',$ingredient_id)->firstOrFail();
+        $ingredients->ingredient_name = $request->filled('ingredient_name')? $request->input('ingredient_name'): $ingredients->ingredient_name;
+        if($ingredients->save()){
+            return new IngredientResource($ingredients);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ingredient  $ingredient
+     * @param  int $ingredient_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingredient $ingredient)
+    public function destroy($ingredient_id)
     {
-        //
+        $ingredients=Ingredient::all()->where('ingredient_id',$ingredient_id)->firstOrFail();
+        if($ingredients->delete()){
+            return new IngredientResource($freeingredientsFrom);
+        }
     }
 }
