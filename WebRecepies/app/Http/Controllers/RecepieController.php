@@ -17,7 +17,8 @@ class RecepieController extends Controller
     public function index()
     {
         $recepies=Recepie::all();
-        return RecepieResource::collection($recepies);
+        return view('recepie',['recepies'=>$recepies]);
+        //return RecepieResource::collection($recepies);
     }
 
     /**
