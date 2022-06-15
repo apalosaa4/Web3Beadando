@@ -59,8 +59,16 @@ class RecepieController extends Controller
      */
     public function show($recipe_id)
     {
-        $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail();
-        return view('recepieid',['recipe_id'=>$recipe_id]);
+        $recepie = Recepie::findOrFail($recipe_id)
+        ->with('user')
+        ->where('recipe_id', $recipe_id)
+        ->first();
+
+        return view('recepieid', compact('recepie'));
+
+
+        //$recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail();
+        //return view('recepieid',['recipe_id'=>$recipe_id]);
         //return new RecepieResource($recepie);
     }
 

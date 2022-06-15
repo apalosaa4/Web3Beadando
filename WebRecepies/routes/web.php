@@ -21,6 +21,9 @@ Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware(['auth'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
