@@ -100,11 +100,11 @@ use Illuminate\Support\Facades\Auth;
                 <li class="nav-item  {{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : 'active' }}">
                     <a class="nav-link" href="{{ route("welcome") }}">{{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : '> ' }} Home</a>
                 </li>
-
+                <li class="nav-item nav-link"> | </li>
                 <li class="nav-item {{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : 'active' }}">
                     <a class="nav-link" href="{{ route("recepie") }}">{{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : '> ' }} Recepies</a>
                 </li>
-
+                <li class="nav-item nav-link"> | </li>
                 <li class="nav-item {{ strpos(\Route::currentRouteName(), "forum") === false ? '' : 'active' }}">
                     <a class="nav-link" href="{{ route("forum") }}">{{ strpos(\Route::currentRouteName(), "forum") === false ? '' : '> ' }} Forum</a>
                 </li>
