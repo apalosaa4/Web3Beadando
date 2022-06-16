@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                         <div class="widget-header icontext">
                             <a href="{{ Auth::check() ? route('profile') : route('login') }}" class="icon icon-sm rounded-circle border"><i class="fas fa-user"></i></a>
                             <div class="text">
-                                <span class="text-muted">Welcome, <!--{ { Auth::check() ? User::find(Auth::id())->name : 'guest' }}-->!</span>
+                                <span class="text-muted">Welcome <!--, { { Auth::check() ? Auth::id()->name : 'guest' }}-->!</span>
                                 <div>
                                     @auth()
                                         <a href="{{ route('signout') }}" style="color: rgba(140, 63, 187, 0.892)"> Logout</a>

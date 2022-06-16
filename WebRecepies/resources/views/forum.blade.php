@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-6 col-md-6" >
+        <div class="col-xs-12 col-sm-6 col-md-10 text-center" >
             <h2 style="color: rgba(140, 63, 187, 0.892)"><br>Interesting infos about free from lifes<br><br><br></h2> 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-10">
