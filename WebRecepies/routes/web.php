@@ -18,15 +18,17 @@ use App\Http\Controllers\RecepieController;
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
 Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware(['auth'])->name('welcome');
+Route::get('/', function () {return view('welcome'); });
+Route::get('/welcome', function () {return view('welcome'); });
+//Route::get('/welcome', function () {return view('welcome'); }) ->middleware(['auth'])->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/forum', function () {return view('forum'); });
+Route::get('/forum', function () 
+{return view('forum'); }
+)->middleware(['auth'])->name('forum');
+
+Route::get('/dashboard', function () 
+{return view('dashboard');}
+)->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

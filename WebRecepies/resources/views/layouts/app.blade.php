@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Auth;
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 col-4">
-                    <a href="{{ route('welcome') }}" class="brand-wrap" style="color: rgba(53, 137, 206, 0.687)">
+                    <a href="{{ route('dashboard') }}" class="brand-wrap" style="color: rgba(53, 137, 206, 0.687)">
                         <h1 class="text-nowrap">FreeFromForum</h1>
                     </a>
                     <!-- brand-wrap END -->
@@ -97,13 +97,17 @@ use Illuminate\Support\Facades\Auth;
 <?php //$routes = collect(\Route::getRoutes())->map(function ($route) { return $route->uri(); }); dd($routes); ?>
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
-                <li class="nav-item  {{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : 'active' }}">
-                    <a class="nav-link" href="{{ route("welcome") }}">{{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : '> ' }} Home</a>
-                </li>
-                <!--@nav_split()-->
+                <!--<li class="nav-item  { { strpos(\Route::currentRouteName(), "dashboard") === false ? '' : 'active' }}">
+                    <a class="nav-link" href="{ { route("dashboard") }}">{ { strpos(\Route::currentRouteName(), "dashboard") === false ? '' : '> ' }} Home</a>
+                </li>-->
+
                 <li class="nav-item {{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : 'active' }}">
                     <a class="nav-link" href="{{ route("recepie") }}">{{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : '> ' }} Recepies</a>
                 </li>
+
+                <!--<li class="nav-item { { strpos(\Route::currentRouteName(), "forum") === false ? '' : 'active' }}">
+                    <a class="nav-link" href="{ { route("forum") }}">{ { strpos(\Route::currentRouteName(), "forum") === false ? '' : '> ' }} Forum</a>
+                </li>-->
             </ul>
         </div>
         <!-- collapse  END -->
@@ -123,7 +127,7 @@ use Illuminate\Support\Facades\Auth;
 <!-- ========================= FOOTER ========================= -->
 <footer class="section-footer border-top">
     <div class="container">
-        <section class="footer-top padding-y">
+        <section class="footer-top padding-y"><br>
             <div class="row">
                 <aside class="col-md col-6">
                     <h6 class="title">Shops</h6>
@@ -170,16 +174,16 @@ use Illuminate\Support\Facades\Auth;
                     <h6 class="title">Social</h6>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#"> <i class="fab fa-facebook"></i> Facebook </a>
+                            <a href="#" style="color: rgba(140, 63, 187, 0.892)"> <i class="fab fa-facebook" style="color: rgba(140, 63, 187, 0.892)"></i> Facebook </a>
                         </li>
                         <li>
-                            <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
+                            <a href="#" style="color: rgba(140, 63, 187, 0.892)"> <i class="fab fa-twitter" style="color: rgba(140, 63, 187, 0.892)"></i> Twitter </a>
                         </li>
                         <li>
-                            <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
+                            <a href="#" style="color: rgba(140, 63, 187, 0.892)"> <i class="fab fa-instagram" style="color: rgba(140, 63, 187, 0.892)"></i> Instagram </a>
                         </li>
                         <li>
-                            <a href="#"> <i class="fab fa-youtube"></i> Youtube </a>
+                            <a href="#" style="color: rgba(140, 63, 187, 0.892)"> <i class="fab fa-youtube" style="color: rgba(140, 63, 187, 0.892)"></i> Youtube </a>
                         </li>
                     </ul>
                 </aside>
