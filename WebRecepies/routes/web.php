@@ -1,8 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RecepieController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +20,18 @@ use App\Http\Controllers\RecepieController;
 |
 */
 
+Route::get('/profile', 'ProfileController@show')->name('profile');
+Route::get('/signout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@signout')->name('signout');
+
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
 Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
 
-Route::get('/', function () {return view('welcome'); });
-Route::get('/welcome', function () {return view('welcome'); });
+Route::get('/', 'HomeController@index')->name('welcome');
+Route::get('/welcome', 'HomeController@index')->name('welcome');
 //Route::get('/welcome', function () {return view('welcome'); }) ->middleware(['auth'])->name('welcome');
 
-Route::get('/forum', function () {return view('forum'); });
-Route::get('/forum', function () 
-{return view('forum'); }
-)->middleware(['auth'])->name('forum');
+Route::get('/forum', 'ForumController@index')->name('forum');
 
-Route::get('/dashboard', function () 
-{return view('dashboard');}
-)->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

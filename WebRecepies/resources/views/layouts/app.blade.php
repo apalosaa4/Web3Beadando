@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                         <div class="widget-header icontext">
                             <a href="{{ Auth::check() ? route('profile') : route('login') }}" class="icon icon-sm rounded-circle border"><i class="fas fa-user"></i></a>
                             <div class="text">
-                                <span class="text-muted">Welcome, {{ Auth::check() ? User::find(Auth::id())->name : 'guest' }}!</span>
+                                <span class="text-muted">Welcome, <!--{ { Auth::check() ? User::find(Auth::id())->name : 'guest' }}-->!</span>
                                 <div>
                                     @auth()
                                         <a href="{{ route('signout') }}" style="color: rgba(140, 63, 187, 0.892)"> Logout</a>
@@ -97,17 +97,17 @@ use Illuminate\Support\Facades\Auth;
 <?php //$routes = collect(\Route::getRoutes())->map(function ($route) { return $route->uri(); }); dd($routes); ?>
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
-                <!--<li class="nav-item  { { strpos(\Route::currentRouteName(), "dashboard") === false ? '' : 'active' }}">
-                    <a class="nav-link" href="{ { route("dashboard") }}">{ { strpos(\Route::currentRouteName(), "dashboard") === false ? '' : '> ' }} Home</a>
-                </li>-->
+                <li class="nav-item  {{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : 'active' }}">
+                    <a class="nav-link" href="{{ route("welcome") }}">{{ strpos(\Route::currentRouteName(), "welcome") === false ? '' : '> ' }} Home</a>
+                </li>
 
                 <li class="nav-item {{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : 'active' }}">
                     <a class="nav-link" href="{{ route("recepie") }}">{{ strpos(\Route::currentRouteName(), "recepie") === false ? '' : '> ' }} Recepies</a>
                 </li>
 
-                <!--<li class="nav-item { { strpos(\Route::currentRouteName(), "forum") === false ? '' : 'active' }}">
-                    <a class="nav-link" href="{ { route("forum") }}">{ { strpos(\Route::currentRouteName(), "forum") === false ? '' : '> ' }} Forum</a>
-                </li>-->
+                <li class="nav-item {{ strpos(\Route::currentRouteName(), "forum") === false ? '' : 'active' }}">
+                    <a class="nav-link" href="{{ route("forum") }}">{{ strpos(\Route::currentRouteName(), "forum") === false ? '' : '> ' }} Forum</a>
+                </li>
             </ul>
         </div>
         <!-- collapse  END -->
@@ -130,48 +130,37 @@ use Illuminate\Support\Facades\Auth;
         <section class="footer-top padding-y"><br>
             <div class="row">
                 <aside class="col-md col-6">
-                    <h6 class="title">Shops</h6>
+                    <h6 class="title" style="color: rgba(53, 137, 206, 0.687)">Shops</h6>
                     <ul class="list-unstyled">
-                        <!--<li><a href="{ { route('contact') }}">Eger</a></li>-->
-                        <li>Eger</li>
-                        <li>Budapest</li>
-                        <li>Opening Soon</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Eger</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Budapest</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Opening Soon</li>
                     </ul>
                 </aside>
                 <aside class="col-md col-6">
-                    <h6 class="title">Company</h6>
+                    <h6 class="title" style="color: rgba(53, 137, 206, 0.687)">Company</h6>
                     <ul class="list-unstyled">
-                        <!--<li><a href="{ { route('about') }}">About us</a></li>-->
-                        <li>About us</li>
-                        <li>Find a store</li>
-                        <li>Rules and terms</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">About us</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Rules and terms</li>
                     </ul>
                 </aside>
                 <aside class="col-md col-6">
-                    <h6 class="title">Help</h6>
+                    <h6 class="title" style="color: rgba(53, 137, 206, 0.687)">Help</h6>
                     <ul class="list-unstyled">
-                        <!--<li><a href="{ { route('contact') }}">Contact us</a></li>-->
-                        <li>Contact us</li>
-                        <li>Money refund</li>
-                        <!--<li><a href="{ { route('about') }}">Policies</a></li>-->
-                        <li>Policies</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Contact us</li>
+                        <li style="color: rgba(140, 63, 187, 0.892)">Policies</li>
                     </ul>
                 </aside>
                 <aside class="col-md col-6">
-                    <h6 class="title">Account</h6>
+                    <h6 class="title" style="color: rgba(53, 137, 206, 0.687)">Account</h6>
                     <ul class="list-unstyled">
-                        <!--<li><a href="{ { route('login') }}"> User Login </a></li>
-                        <li><a href="{ { route('register') }}"> User register </a></li>
-                        <li><a href="{ { route('profile') }}"> Account Setting </a></li>
-                        <li><a href="{ { route('orders') }}"> My Orders </a></li>-->
-                        <li> User Login </li>
-                        <li> User register </li>
-                        <li> Account Setting </li>
-                        <li> My Orders </li>
+                        <li style="color: rgba(140, 63, 187, 0.892)"><a href="{{ route('login') }}" style="color: rgba(140, 63, 187, 0.892)"> User Login </a></li>
+                        <li style="color: rgba(140, 63, 187, 0.892)"><a href="{{ route('register') }}" style="color: rgba(140, 63, 187, 0.892)"> User register </a></li>
+                        <li style="color: rgba(140, 63, 187, 0.892)"> Account Setting </li>
                     </ul>
                 </aside>
                 <aside class="col-md">
-                    <h6 class="title">Social</h6>
+                    <h6 class="title" style="color: rgba(53, 137, 206, 0.687)">Social</h6>
                     <ul class="list-unstyled">
                         <li>
                             <a href="#" style="color: rgba(140, 63, 187, 0.892)"> <i class="fab fa-facebook" style="color: rgba(140, 63, 187, 0.892)"></i> Facebook </a>

@@ -6,7 +6,7 @@
         <div class="col-md-8 ">
             <div class="card-transparent">
                 <div class="card-header-transparent offset-md-6 mb-4" >
-                    <h3 style="color: rgba(53, 137, 206, 0.687)">{{ __('Register') }}</h3>
+                    <h3 style="color: rgba(140, 63, 187, 0.892)">{{ __('Register') }}</h3>
                 </div>
 
                 <div class="card-body">
@@ -55,27 +55,13 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
-
-                        <!--
-                        <div class="form-group row">
-                            <label for="Gender" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">Choose your gender</label>
-                            <div class="col-md-6">
-                                <select id="genders">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>        
-                        -->            
+                        </div>         
 
                         <div class="form-group row mb-12">
                             <div class="col-md-6 offset-md-6">

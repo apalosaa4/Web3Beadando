@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::resource('recepie','App\Http\Controllers\RecepieController');
 Route::resource('freefrom','App\Http\Controllers\FreeFromController');
 Route::resource('welcome','App\Http\Controllers\Controller');
+Route::resource('forum', 'App\Http\Controllers\ForumController');
+Route::resource('signout', 'App\Http\Controllers\Auth\AuthenticatedSessionController');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
