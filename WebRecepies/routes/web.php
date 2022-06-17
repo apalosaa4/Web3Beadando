@@ -25,6 +25,7 @@ Route::get('/signout', '\App\Http\Controllers\Auth\AuthenticatedSessionControlle
 
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
 Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
+Route::post('/recepie/add', 'RecepieController@create')->name('addrecipe');
 
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/welcome', 'HomeController@index')->name('welcome');

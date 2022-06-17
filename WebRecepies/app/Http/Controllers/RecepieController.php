@@ -34,10 +34,11 @@ class RecepieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param int $recipe_id
      * @param  \App\Http\Requests\StoreRecepieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecepieRequest $request)
+    public function store(StoreRecepieRequest $request, $recipe_id)
     {
         $recepie = new Recepie();
         $recepie->recipe_id = $request->input('recipe_id');

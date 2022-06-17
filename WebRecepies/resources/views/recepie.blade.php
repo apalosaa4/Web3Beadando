@@ -17,7 +17,7 @@
                                 <button class="btn btn-primary" style="background-color: rgba(140, 63, 187, 0.892); border-color:rgba(140, 63, 187, 0.892)" type="button">Description</button>
                             </a>
                           </div>
-                        </div>
+                        </div><br>
                     </div>
                     @endforeach
                 </div>

@@ -6,20 +6,20 @@
         <div class="col-md-8 ">
             <div class="card-transparent">
                 <div class="card-header-transparent offset-md-6 mb-4" >
-                    <h3 style="color: rgba(140, 63, 187, 0.892)">{{ __('Register') }}</h3>
+                    <h3 style="color: rgba(140, 63, 187, 0.892)">{{ __('Add a new recipe') }}</h3>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('addrecipe') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Name') }}</label>
+                            <label for="recipe_name" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Recepie name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="recipe_name" type="text" class="form-control @error('recipe_name') is-invalid @enderror" name="recipe_name" value="{{ old('recipe_name') }}" required autocomplete="recipe_name" autofocus>
 
-                                @error('name')
+                                @error('recipe_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -28,12 +28,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('E-Mail Address') }}</label>
+                            <label for="freefrom" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Free From') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="freefrom" type="freefrom" class="form-control @error('freefrom') is-invalid @enderror" name="freefrom" value="{{ old('freefrom') }}" required autocomplete="freefrom">
 
-                                @error('email')
+                                @error('freefrom')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,31 +42,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Password') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="description" type="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description">
 
-                                @error('password')
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right" style="color: rgba(140, 63, 187, 0.892)">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>         
+                        </div>       
 
                         <div class="form-group row mb-12">
                             <div class="col-md-6 offset-md-6">
                                 <button type="submit" class="btn btn-primary" style="background-color: rgba(140, 63, 187, 0.892); border-color:rgba(140, 63, 187, 0.892)">
-                                    {{ __('Register') }}
+                                    {{ __('Add new recipe') }}
                                 </button>
                             </div>
                         </div>
