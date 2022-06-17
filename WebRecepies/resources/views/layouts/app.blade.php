@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Auth;
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 col-4">
-                    <a href="{{ route('dashboard') }}" class="brand-wrap" style="color: rgba(53, 137, 206, 0.687)">
+                    <a href="{{ route('welcome') }}" class="brand-wrap" style="color: rgba(53, 137, 206, 0.687)">
                         <h1 class="text-nowrap">FreeFromForum</h1>
                     </a>
                     <!-- brand-wrap END -->
@@ -182,18 +182,15 @@ use Illuminate\Support\Facades\Auth;
         <!-- footer-top END -->
 
         <section class="footer-bottom border-top row">
-            <div class="col-md-2">
-                <p class="text-muted">© 2022 FreeFromForum</p>
-            </div>
-            <div class="col-md-8 text-md-center">
+            <div class="col-md-12 text-md-center">
                 <span class="px-2">info@freefromforum-example.com</span>
                 <span class="px-2">+36 1 123 456</span>
                 <span class="px-2">Street name 123, City</span>
             </div>
-            <div class="col-md-2 text-md-right text-muted">
-                <i class="fab fa-lg fa-cc-visa"></i>
-                <i class="fab fa-lg fa-cc-paypal"></i>
-                <i class="fab fa-lg fa-cc-mastercard"></i>
+        </section>
+        <section class="footer-bottom border-bottom row">
+            <div class="col-md-12 text-md-center">
+                <p class="text-muted">© 2022 FreeFromForum</p>
             </div>
         </section>
     </div>
