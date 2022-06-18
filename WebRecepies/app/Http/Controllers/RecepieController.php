@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recepie;
+use App\Http\Requests;
 use App\Http\Requests\StoreRecepieRequest;
 use App\Http\Requests\UpdateRecepieRequest;
 use App\Http\Resources\RecepieResource;
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\RecipeIngredientController;
+use App\Http\Controllers\FreeFromController;
+use App\Http\Controllers\RecipeFreeFromController;
 
 class RecepieController extends Controller
 {
@@ -38,7 +43,7 @@ class RecepieController extends Controller
      * @param  \App\Http\Requests\StoreRecepieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecepieRequest $request, $recipe_id)
+    public function store(StoreRecepieRequest $request)
     {
         $recepie = new Recepie();
         $recepie->recipe_id = $request->input('recipe_id');
@@ -50,6 +55,39 @@ class RecepieController extends Controller
         if($recepie->save()){
             return new RecepieResource($recepie);
         }
+    }
+
+    public function storeWithDeatils(StoreRecepieRequest $request)
+    {
+        //$recepie = $this->store($request);
+
+        $ingredientscontroller = new IngredientController();
+        $ingredientslist = $request->input('ingredientslist');
+        $list = explode(",",$ingredientslist);
+        $allingredients = $ingredientscontroller->index();
+        //$res = json_decode($allingredients, true);
+        $existingingredients = [];
+        for ($i=0; $i < count($allingredients); $i++) 
+        { 
+            array_push($existingingredients, $allingredients[$i]->ingredient_name);
+        }
+        for ($i=0; $i < count($list); $i++) 
+        { 
+            $name=explode("-",$list[$i])[0];
+            if(in_array($name, $existingingredients))
+            {
+                dd("helo");
+            }
+            else
+            {
+                $ingredient = $ingredientscontroller->storedetails(($allingredients[count($existingingredients)-1]->ingredient_id)+1,$name);
+            }
+            dd($allingredients[0]->ingredient_name);
+        }
+        $ingredients = $ingredientscontroller->store($request);
+
+        $recipeingrdientscontroller = new RecipeIngredientController();
+
     }
 
     /**

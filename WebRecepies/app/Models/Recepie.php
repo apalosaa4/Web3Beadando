@@ -11,6 +11,8 @@ class Recepie extends Model
 
     protected $primaryKey = 'recipe_id';
 
+    public $incrementing = false;
+
     public function user(){
         return $this->belongsTo("\App\Models\User", 'recipe_id', 'id');
     }

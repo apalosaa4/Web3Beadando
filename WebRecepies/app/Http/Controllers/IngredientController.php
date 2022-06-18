@@ -46,6 +46,16 @@ class IngredientController extends Controller
         }
     }
 
+    public function storedetails($ingredient_id, $ingredient_name)
+    {
+        $ingredients = new Ingredient();
+        $ingredients->ingredient_id = $ingredient_id;
+        $ingredients->ingredient_name = $ingredient_name;
+        if($ingredients->save()){
+            return new IngredientResource($ingredients);
+        }
+    }
+
     /**
      * Display the specified resource.
      *
