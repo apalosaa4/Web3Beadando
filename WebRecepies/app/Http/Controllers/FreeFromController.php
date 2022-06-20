@@ -46,6 +46,16 @@ class FreeFromController extends Controller
         }
     }
 
+    public function storedetails($freefrom_id, $freefrom_name)
+    {
+        $freeFrom = new FreeFrom();
+        $freeFrom->freefrom_id = $freefrom_id;
+        $freeFrom->freefrom_name = $freefrom_name;
+        if($freeFrom->save()){
+            return new FreeFromResource($freeFrom);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

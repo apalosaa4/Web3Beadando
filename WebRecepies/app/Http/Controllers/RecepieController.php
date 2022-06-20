@@ -7,6 +7,10 @@ use App\Http\Requests;
 use App\Http\Requests\StoreRecepieRequest;
 use App\Http\Requests\UpdateRecepieRequest;
 use App\Http\Resources\RecepieResource;
+use App\Http\Resources\IngredientResource;
+use App\Http\Resources\RecipeIngredientResource;
+use App\Http\Resources\FreeFromResource;
+use App\Http\Resources\RecipeFreeFromResource;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeIngredientController;
 use App\Http\Controllers\FreeFromController;
@@ -24,6 +28,12 @@ class RecepieController extends Controller
         $recepies=Recepie::all();
         return view('recepie',['recepies'=>$recepies]);
         //return RecepieResource::collection($recepies);
+    }
+
+    public function indexog()
+    {
+        $recepies=Recepie::all();
+        return RecepieResource::collection($recepies);
     }
 
     /**
@@ -46,9 +56,11 @@ class RecepieController extends Controller
     public function store(StoreRecepieRequest $request)
     {
         $recepie = new Recepie();
-        $recepie->recipe_id = $request->input('recipe_id');
-        $recepie->user_id = $request->input('user_id');
-        $recepie->freefrom = $request->input('freefrom');
+
+        $recepieall = $this->indexog();
+        $recepieid = count($recepieall)+1;
+        $recepie->recipe_id = $recepieid;
+        $recepie->user_id = 0;
         $recepie->recipe_name = $request->input('recipe_name');
         $recepie->description = $request->input('description');
         $recepie->created_at = $request->input('created_at');
@@ -59,13 +71,12 @@ class RecepieController extends Controller
 
     public function storeWithDeatils(StoreRecepieRequest $request)
     {
-        //$recepie = $this->store($request);
+        $recepie = $this->store($request);
 
         $ingredientscontroller = new IngredientController();
         $ingredientslist = $request->input('ingredientslist');
         $list = explode(",",$ingredientslist);
         $allingredients = $ingredientscontroller->index();
-        //$res = json_decode($allingredients, true);
         $existingingredients = [];
         for ($i=0; $i < count($allingredients); $i++) 
         { 
@@ -73,21 +84,50 @@ class RecepieController extends Controller
         }
         for ($i=0; $i < count($list); $i++) 
         { 
+            $ingredientId = 0;
             $name=explode("-",$list[$i])[0];
             if(in_array($name, $existingingredients))
             {
-                dd("helo");
+                $existingingredientindex = array_search($name, $existingingredients);
+                $ingredientId = $allingredients[$existingingredientindex]->ingredient_id;
             }
             else
             {
-                $ingredient = $ingredientscontroller->storedetails(($allingredients[count($existingingredients)-1]->ingredient_id)+1,$name);
+                $ingredientId = ($allingredients[count($existingingredients)-1]->ingredient_id)+1;
+                $ingredient = $ingredientscontroller->storedetails($ingredientId,$name);
             }
-            dd($allingredients[0]->ingredient_name);
+            
+            $recipeingredientscontroller = new RecipeIngredientController();
+            $amount=explode("-",$list[$i])[1];
+            $recipeingredients = $recipeingredientscontroller->store($recepie->recipe_id, $ingredientId, $amount);
         }
-        $ingredients = $ingredientscontroller->store($request);
 
-        $recipeingrdientscontroller = new RecipeIngredientController();
-
+        $freefromcontroller = new FreeFromController();
+        $freefromlist = $request->input('freefromlist');
+        $list = explode(",",$freefromlist);
+        $allfreefrom = $freefromcontroller->index();
+        $existingfreefrom = [];
+        for ($i=0; $i < count($allfreefrom); $i++) 
+        { 
+            array_push($existingfreefrom, $allfreefrom[$i]->freefrom_name);
+        }
+        for ($i=0; $i < count($list); $i++) 
+        { 
+            $freefromId = 0;
+            if(in_array($list[$i], $existingfreefrom))
+            {
+                $existingfreefromindex = array_search($list[$i], $existingfreefrom);
+                $freefromId = $allfreefrom[$existingfreefromindex]->freefrom_id;
+            }
+            else
+            {
+                $freefromId = ($allfreefrom[count($existingfreefrom)-1]->freefrom_id)+1;
+                $freefrom = $freefromcontroller->storedetails($freefromId,$list[$i]);
+            }
+            
+            $recipefreefromcontroller = new RecipeFreeFromController();
+            $recipefreefrom = $recipefreefromcontroller->storeextra($recepie->recipe_id, $freefromId);
+        }
     }
 
     /**
@@ -133,7 +173,6 @@ class RecepieController extends Controller
     {
         $recepie=Recepie::all()->where('recipe_id',$recipe_id)->firstOrFail();
         $recepie->user_id = $request->filled('user_id')? $request->input('user_id'): $recepie->user_id;
-        $recepie->freefrom = $request->filled('freefrom')? $request->input('freefrom'): $recepie->freefrom;
         $recepie->recipe_name = $request->filled('recipe_name')? $request->input('recipe_name'): $recepie->recipe_name;
         $recepie->description = $request->filled('description')? $request->input('description'): $recepie->description;
         $recepie->created_at = $request->filled('created_at')? $request->input('created_at'): $recepie->created_at;

@@ -46,6 +46,19 @@ class RecipeFreeFromController extends Controller
         }
     }
 
+    public function storeextra($recipe_id, $freefrom_id)
+    {
+        $recepiefreefrom = new RecipeFreeFrom();
+        $recipefreefromall = $this->index();
+        $recipefreefromid = count($recipefreefromall)+1;
+        $recepiefreefrom->id = $recipefreefromid;
+        $recepiefreefrom->recipe_id = $recipe_id;
+        $recepiefreefrom->freefrom_id = $freefrom_id;
+        if($recepiefreefrom->save()){
+            return new RecipeFreeFromResource($recepiefreefrom);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

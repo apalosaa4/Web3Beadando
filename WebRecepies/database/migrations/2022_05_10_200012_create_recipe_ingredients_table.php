@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('recipe_id');
             $table->bigInteger('ingredient_id');
             $table->string('ingredient_amount');
+            $table->timestamps();
         });
     }
 

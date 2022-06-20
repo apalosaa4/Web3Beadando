@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RecipeIngredient;
 use App\Http\Requests\StoreRecipeIngredientRequest;
 use App\Http\Requests\UpdateRecipeIngredientRequest;
-use App\Http\Resource\RecipeIngredientResource;
+use App\Http\Resources\RecipeIngredientResource;
 
 class RecipeIngredientController extends Controller
 {
@@ -17,7 +17,7 @@ class RecipeIngredientController extends Controller
     public function index()
     {
         $recepieingredient=RecipeIngredient::all();
-        return RecepieIngredientResource::collection($recepieingredient);
+        return RecipeIngredientResource::collection($recepieingredient);
     }
 
     /**
@@ -32,19 +32,30 @@ class RecipeIngredientController extends Controller
         $recepieingredient->ingredient_id = $request->input('ingredient_id');
         $recepieingredient->ingredient_amount = $request->input('ingredient_amount');
         if($recepieingredient->save()){
-            return new RecepieIngredientResource($recepieingredient);
+            return new RecipeIngredientResource($recepieingredient);
         }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRecipeIngredientRequest  $request
+     * @param  int $recipe_id
+     * @param  int $ingredient_id
+     * @param  string $ingredient_amount
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecipeIngredientRequest $request)
+    public function store($recipe_id, $ingredient_id, $ingredient_amount)
     {
-        //
+        $recipeingredient = new RecipeIngredient();
+        $recipeingredientall = $this->index();
+        $recipeingredientid = count($recipeingredientall)+1;
+        $recipeingredient->id = $recipeingredientid;
+        $recipeingredient->ingredient_id = $ingredient_id;
+        $recipeingredient->recipe_id = $recipe_id;
+        $recipeingredient->ingredient_amount = $ingredient_amount;
+        if($recipeingredient->save()){
+            return new RecipeIngredientResource($recipeingredient);
+        }
     }
 
     /**
@@ -56,7 +67,7 @@ class RecipeIngredientController extends Controller
     public function show($recipe_id)
     {
         $recepieingredient=RecipeIngredient::all()->where('recipe_id',$recipe_id)->firstOrFail();
-        return new RecepieIngredientResource($recepieingredient);
+        return new RecipeIngredientResource($recepieingredient);
     }
 
     /**

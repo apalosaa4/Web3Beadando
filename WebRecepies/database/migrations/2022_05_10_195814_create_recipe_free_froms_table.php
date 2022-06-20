@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('id');
             $table->bigInteger('recipe_id');
             $table->bigInteger('freefrom_id');
+            $table->timestamps();
         });
     }
 
