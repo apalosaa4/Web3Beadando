@@ -128,7 +128,7 @@ class RecepieController extends Controller
             $recipefreefromcontroller = new RecipeFreeFromController();
             $recipefreefrom = $recipefreefromcontroller->storeextra($recepie->recipe_id, $freefromId);
         }
-        //return redirect()->route('showAddwithdetails');
+        return redirect()->route('success');
     }
 
     public function showAddwithdetails()

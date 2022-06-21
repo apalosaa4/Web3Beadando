@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SuccessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,11 @@ Route::get('/signout', '\App\Http\Controllers\Auth\AuthenticatedSessionControlle
 
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
 Route::get('/recepie/add', 'RecepieController@showAddwithdetails')->name('add');
+
 Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
-//Route::post('/recepie/addwithdetails', 'RecepieController@storeWithDeatils')->name('addwithdetails');
+Route::post('/recepie/store', 'RecepieController@storeWithDeatils')->name('store');
+
+Route::get('/success', 'SuccessController@index')->name('success');
 
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/welcome', 'HomeController@index')->name('welcome');
