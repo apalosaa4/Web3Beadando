@@ -19,7 +19,7 @@ Route::resource('freefrom','App\Http\Controllers\FreeFromController');
 Route::resource('welcome','App\Http\Controllers\Controller');
 Route::resource('forum', 'App\Http\Controllers\ForumController');
 Route::resource('signout', 'App\Http\Controllers\Auth\AuthenticatedSessionController');
-Route::post('/recepie/addwithdetails', 'App\Http\Controllers\RecepieController@storeWithDeatils')->name('addwithdetails');
+Route::post('/recepie/success', 'App\Http\Controllers\RecepieController@storeWithDeatils')->name('success');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

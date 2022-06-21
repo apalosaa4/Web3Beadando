@@ -109,8 +109,8 @@ use Illuminate\Support\Facades\Auth;
                     <a class="nav-link" href="{{ route("forum") }}">{{ strpos(\Route::currentRouteName(), "forum") === false ? '' : '> ' }} Forum</a>
                 </li>
                 <li class="nav-item nav-link"> | </li>
-                <li class="nav-item {{ strpos(\Route::currentRouteName(), "addrecipe") === false ? '' : 'active' }}">
-                    <a class="nav-link" href="{{ route("addrecipe") }}">{{ strpos(\Route::currentRouteName(), "addrecipe") === false ? '' : '> ' }} New Recipe</a>
+                <li class="nav-item {{ strpos(\Route::currentRouteName(), "add") === false ? '' : 'active' }}">
+                    <a class="nav-link" href="{{ route("add") }}">{{ strpos(\Route::currentRouteName(), "add") === false ? '' : '> ' }} New Recipe</a>
                 </li>
             </ul>
         </div>

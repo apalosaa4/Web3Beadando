@@ -24,8 +24,9 @@ Route::get('/profile', 'ProfileController@show')->name('profile');
 Route::get('/signout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@signout')->name('signout');
 
 Route::get('/recepie', 'RecepieController@index')->name('recepie');
+Route::get('/recepie/add', 'RecepieController@showAddwithdetails')->name('add');
 Route::get('/recepie/{id}', 'RecepieController@show')->name('recepieid');
-Route::post('/recepie/addwithdetails', 'RecepieController@storeWithDeatils')->name('addwithdetails');
+//Route::post('/recepie/addwithdetails', 'RecepieController@storeWithDeatils')->name('addwithdetails');
 
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/welcome', 'HomeController@index')->name('welcome');
